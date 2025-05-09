@@ -21,4 +21,3 @@ def generate_file_embedding(file):
         for segment in segments:
             json.dump(segment, f)
             f.write("\n")
-    print(f"Generated embeddings for {file}")
