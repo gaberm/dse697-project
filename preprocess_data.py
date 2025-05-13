@@ -1,5 +1,5 @@
-from src.transcription import transcripe
-from src.embeddings import generate_file_embedding
+from embedding import transcripe
+from src.embedding import generate_file_embedding, transcripe
 from tqdm import tqdm
 import os
 

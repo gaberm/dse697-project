@@ -3,6 +3,24 @@ import torch
 import os
 import json
 from moviepy import VideoFileClip
+from sentence_transformers import SentenceTransformer
+
+def generate_file_embedding(file):
+    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+
+    segments = []
+    with open(file) as f:
+        for line in f:
+            segment = json.loads(line)
+            segments.append(segment)
+
+    for idx, segment in enumerate(segments):
+        segments[idx]["embedding"] = model.encode(segment["text"], convert_to_tensor=True).tolist()
+
+    with open(file, "w") as f:
+        for segment in segments:
+            json.dump(segment, f)
+            f.write("\n")
 
 
 def transcripe(mp4_file, audio_dir, transcript_dir, model_size, chunk_size, overlap, lecture, date):
