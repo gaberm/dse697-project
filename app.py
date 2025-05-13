@@ -11,6 +11,7 @@ chat_history = []
 # Settings for the retrieval process
 top_k = 5
 threshold = 0.1
+transcript_dir = "/gpfs/wolf2/olcf/trn040/proj-shared/mgaber_6i0/transcripts/"
 
 # Loading the embedding and chatbot models
 print("🚀 Initializing models... Please wait.")
@@ -236,7 +237,6 @@ def chat_endpoint():
     if not query:
         return jsonify({'error': 'No query provided'}), 400
 
-    transcript_dir = "transcripts/processed"
     query_embedding = embedding_model.encode(query, convert_to_tensor=True).tolist()
     answer = generate_answer(
         query,

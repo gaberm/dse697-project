@@ -4,7 +4,7 @@
 #SBATCH -J preprocessing_data
 #SBATCH -o .cache/sbatch_logs/%x-%j.out
 #SBATCH -e .cache/sbatch_logs/%x-%j.err
-#SBATCH -t 01:00:00
+#SBATCH -t 02:00:00
 #SBATCH -N 1
 
 # Only necessary if submitting like: sbatch --export=NONE ... (recommended)
@@ -18,5 +18,9 @@ module load craype-accel-amd-gfx90a
 
 # Activate the new environment
 source activate /gpfs/wolf2/olcf/trn040/scratch/mgaber/envs/hf-transformers
+
+# Set the environment variable for the model cache
+export HF_HOME="/gpfs/wolf2/olcf/trn040/scratch/mgaber/hf_cache"
+export HF_TOKEN=$(<hf_token.txt)
 
 /gpfs/wolf2/olcf/trn040/scratch/mgaber/envs/hf-transformers/bin/python3.12 preprocess_data.py
