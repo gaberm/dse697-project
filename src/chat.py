@@ -68,7 +68,7 @@ def generate_answer(query_raw, query_embedding, transcript_dir, chat_history, pi
 
         Today’s date is {date.today()}.
 
-        Use the following "Lecture Context" to answer the user's question. If you cite lecture material, use the format (Lecture i (start_i)) directly after the relevant sentence or paragraph.
+        Use the following "Lecture Context" to answer the user's question (Current Question: ...). If you cite lecture material, use the format (Lecture i (start_i)) directly after the relevant sentence or paragraph.
 
         If the answer cannot be found in the context, respond with: “I couldn’t find this information in the provided lecture materials.”
 
